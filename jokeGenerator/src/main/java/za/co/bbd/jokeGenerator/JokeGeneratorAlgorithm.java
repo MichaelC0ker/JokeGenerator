@@ -6,29 +6,29 @@ import java.util.stream.Collectors;
 
 public class JokeGeneratorAlgorithm {
     private List<Player> players;
-    private int currentPlayer = 0;
-    private final Comparator<Player> compareByScore = Comparator.comparing(Player::getAccumulatedScore).reversed();
+    private final Comparator<Player> compareByScore = Comparator
+            .comparing(Player::getAccumulatedScore).reversed();
 
     public JokeGeneratorAlgorithm (List<Punchline> punchlines, List<Player> players) {
         this.players = players;
     }
 
     public Player getCurrentPlayer() {
-        return players.get(currentPlayer);                   
+        return players.get(currentPlayer);
     }
 
+    private int currentPlayer = 0;
 
     public void endTurn() {
-        currentPlayer = (currentPlayer + 1) % players.size();        //changes player for each turn 
+        currentPlayer = (currentPlayer + 1) % players.size();
     }
 
     public void pickPunchline(Punchline punchline) {
-        System.out.println(punchline.getScore());  //we may delete this 
-        players.get(currentPlayer).increaseScore(punchline.getScore()); //increace the players score for the punchline they've picked 
+        System.out.println(punchline.getScore());
+        players.get(currentPlayer).increaseScore(punchline.getScore());
     }
 
     public List<Player> getLeaderboard() {
-        return players.stream().sorted(compareByScore).collect(Collectors.toList());  //Michael wants to know more about this :-)
+        return players.stream().sorted(compareByScore).collect(Collectors.toList());
     }
-
 }
