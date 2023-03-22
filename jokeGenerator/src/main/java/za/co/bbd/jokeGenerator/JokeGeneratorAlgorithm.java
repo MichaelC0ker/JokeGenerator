@@ -4,6 +4,8 @@ import java.lang.Math;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -27,7 +29,6 @@ public class JokeGeneratorAlgorithm {
     }
 
     public void pickPunchline(Punchline punchline) {
-        System.out.println(punchline.getScore());
         players.get(currentPlayer).increaseScore(punchline.getScore());
     }
 
@@ -35,18 +36,27 @@ public class JokeGeneratorAlgorithm {
         return players.stream().sorted(compareByScore).collect(Collectors.toList());
     }
 
+    private List<Joke> getJokes(){
+        List<Joke> jokes = new ArrayList<>();
+        for(int i = 0;i<3;i++){
+            jokes.add(new Joke());
+        }
+        return jokes;
+    }
+
     public void playGame() {
         int pick = -1;
         String gameData = "";
+        List<Joke> jokes = getJokes();
+
         for (int roundNum = 1; roundNum <= 3; roundNum++) {
             gameData = "";
             // for every round, we show a base joke and 5 punchlines
-            Joke roundJoke = new Joke();
-            gameData += "Round " + roundNum + "\nBase Joke:\n  " + roundJoke.getBaseJoke() + "\nPunchlines:\n";
-            List<Punchline> punchlines = roundJoke.getPunchlines();
+            gameData += "Round " + roundNum + "\nBase Joke:\n  " + jokes.get(roundNum-1).getBaseJoke() + "\nPunchlines:\n";
+            List<Punchline> punchlines = jokes.get(roundNum-1).getPunchlines();
             int punchlineCount = 1;
             for (Punchline p : punchlines) {
-                gameData += punchlineCount + ". " + p.getPunchLine() + "\n";
+                gameData += punchlineCount + ". " + p.getPunchLine() + " = "+p.getScore()+ "\n";
                 punchlineCount++;
             }
 
@@ -54,18 +64,23 @@ public class JokeGeneratorAlgorithm {
             for (Player pl : players) {
                 if (players.get(currentPlayer).getName().equals("AI")) {
                     pick = (int) (Math.random() * 4) + 1; // pick a random number between 1 and 5 for the AI
+                    System.out.println("pick by AI:" + pick);
+
                     // System.out.println("pick:" + pick);
+
                 } else {
                     pick = Integer
                             .parseInt(JOptionPane.showInputDialog(
                                     gameData + "\n\nWhich punchline fits in well with the base joke?")); // as user for
                                                                                                          // input
-                    // System.out.println("pick:" + pick);
+                    System.out.println("pick by real player:" + pick);
+                  //  System.out.println(pun-chlines.get(pick--).getScore());
+
 
                 }
                 // System.out.println("Punchline size " + punchlines.size() + "\nPick--: " +
                 // pick--);
-                pickPunchline(punchlines.get(pick--));
+                pickPunchline(punchlines.get(pick-1));
                 endTurn();
             }
 

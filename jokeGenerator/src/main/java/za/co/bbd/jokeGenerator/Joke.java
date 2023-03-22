@@ -40,9 +40,7 @@ public class Joke {
                     punchlines.add(new Punchline(5, dataArr[7]));
 
                 } else {
-                    punchlines.add(new Punchline(4, dataArr[7])); // change 4 to random number between 0 and 5 !
-                    System.out.println("We ignore " + responseBody);
-
+                    punchlines.add(new Punchline( (int) (Math.random() * 4), dataArr[7])); // change 4 to random number between 0 and 5 !
                 }
 
             }
