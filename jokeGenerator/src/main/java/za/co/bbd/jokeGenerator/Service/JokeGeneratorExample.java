@@ -1,7 +1,11 @@
-package za.co.bbd.jokeGenerator;
+package za.co.bbd.jokeGenerator.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import za.co.bbd.jokeGenerator.Model.Joke;
+import za.co.bbd.jokeGenerator.Model.Player;
+import za.co.bbd.jokeGenerator.Model.PunchLine;
 
 public class JokeGeneratorExample {
     public static void main(String[] args) {
@@ -10,11 +14,11 @@ public class JokeGeneratorExample {
         players.add(new Player("Player"));
         players.add(new Player("AI"));            //we're creating 2 players 
 
-        List<Punchline> punchlines = new ArrayList<>();
-        punchlines.add(new Punchline(10," "));
-        punchlines.add(new Punchline(4," "));
-        punchlines.add(new Punchline(2," "));
-        punchlines.add(new Punchline(19," "));
+        List<PunchLine> punchlines = new ArrayList<>();
+        punchlines.add(new PunchLine(10," "));
+        punchlines.add(new PunchLine(4," "));
+        punchlines.add(new PunchLine(2," "));
+        punchlines.add(new PunchLine(19," "));
 
         JokeGeneratorAlgorithm jga = new JokeGeneratorAlgorithm(punchlines, players);
 

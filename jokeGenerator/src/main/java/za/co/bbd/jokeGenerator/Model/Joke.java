@@ -1,4 +1,4 @@
-package za.co.bbd.jokeGenerator;
+package za.co.bbd.jokeGenerator.Model;
 
 /* Imports for data structures */
 import java.util.ArrayList;
@@ -13,9 +13,11 @@ import org.apache.http.util.EntityUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import za.co.bbd.jokeGenerator.Model.PunchLine;
+
 public class Joke {
     private final String url = "https://backend-omega-seven.vercel.app/api/getjoke"; // site to get jokes
-    private List<Punchline> punchlines = new ArrayList<>();
+    private List<PunchLine> punchlines = new ArrayList<>();
     private String baseJoke;
 
     public Joke() {
@@ -37,10 +39,10 @@ public class Joke {
 
                 if (i == 0) {
                     baseJoke = dataArr[3];
-                    punchlines.add(new Punchline(5, dataArr[7]));
+                    punchlines.add(new PunchLine(5, dataArr[7]));
 
                 } else {
-                    punchlines.add(new Punchline(4, dataArr[7])); // change 4 to random number between 0 and 5 !
+                    punchlines.add(new PunchLine(4, dataArr[7])); // change 4 to random number between 0 and 5 !
                     System.out.println("We ignore " + responseBody);
 
                 }
@@ -58,7 +60,7 @@ public class Joke {
                 "----------------------------------------------------------------------------------------------------\n"
                         + "base joke " + baseJoke);
         int count = 1;
-        for (Punchline p : punchlines) {
+        for (PunchLine p : punchlines) {
             System.out.println("Punchline " + count + " : " + p.getPunchLine());
             count++;
         }
