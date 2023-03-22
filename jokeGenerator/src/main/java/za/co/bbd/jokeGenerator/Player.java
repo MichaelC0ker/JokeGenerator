@@ -21,6 +21,10 @@ public class Player {
         accumulatedScore = 0;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     @Override
     public String toString() {
         return name + ": " + accumulatedScore;
