@@ -53,12 +53,18 @@ public class JokeGeneratorAlgorithm {
             // we then give each player a turn to pick a punchline
             for (Player pl : players) {
                 if (players.get(currentPlayer).getName().equals("AI")) {
-                     pick = (int)(Math.random()*5); //pick a random number between 1 and 5 for the AI 
+                    pick = (int) (Math.random() * 4) + 1; // pick a random number between 1 and 5 for the AI
+                    // System.out.println("pick:" + pick);
                 } else {
-                     pick = Integer
-                            .parseInt(JOptionPane.showInputDialog(gameData + "\n\nWhich punchline fits in well with the base joke?")); //as user for input 
+                    pick = Integer
+                            .parseInt(JOptionPane.showInputDialog(
+                                    gameData + "\n\nWhich punchline fits in well with the base joke?")); // as user for
+                                                                                                         // input
+                    // System.out.println("pick:" + pick);
+
                 }
-            System.out.println("Punchline size " + punchlines.size() + "\nPick-- " + pick--);
+                // System.out.println("Punchline size " + punchlines.size() + "\nPick--: " +
+                // pick--);
                 pickPunchline(punchlines.get(pick--));
                 endTurn();
             }
