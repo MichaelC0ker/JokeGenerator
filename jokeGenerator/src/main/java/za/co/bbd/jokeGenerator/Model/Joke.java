@@ -11,10 +11,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import za.co.bbd.jokeGenerator.Model.PunchLine;
-
 public class Joke {
     private final String url = "https://backend-omega-seven.vercel.app/api/getjoke"; // site to get jokes
     private List<PunchLine> punchlines = new ArrayList<>();
