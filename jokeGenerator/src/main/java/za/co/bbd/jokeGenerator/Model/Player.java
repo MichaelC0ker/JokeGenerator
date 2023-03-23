@@ -1,5 +1,6 @@
-package za.co.bbd.jokeGenerator;
+package za.co.bbd.jokeGenerator.Model;
 
+//check if exists in the db
 public class Player {
     private final String name;
     private int accumulatedScore = 0;
@@ -24,5 +25,13 @@ public class Player {
     @Override
     public String toString() {
         return name + ": " + accumulatedScore;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setAccumulatedScore(int accumulatedScore) {
+        this.accumulatedScore = accumulatedScore;
     }
 }
