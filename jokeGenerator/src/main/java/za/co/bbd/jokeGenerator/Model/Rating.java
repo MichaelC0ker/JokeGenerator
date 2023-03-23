@@ -9,8 +9,18 @@ import java.util.List;
 @Entity
 @Table(name = "Rating")
 public class Rating {
-    
+
     @Id
+    @SequenceGenerator(
+            name = "rating_sequence",
+            sequenceName = "rating_sequence",
+            allocationSize = 1
+    )
+
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "rating_sequence"
+    )
     private int ratingId;
 
     @Column(name="baseJokeId")

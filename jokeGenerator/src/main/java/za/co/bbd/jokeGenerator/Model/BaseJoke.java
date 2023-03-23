@@ -6,7 +6,16 @@ import jakarta.persistence.*;
 public class BaseJoke {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "base_joke_sequence",
+            sequenceName = "base_joke_sequence",
+            allocationSize = 1
+    )
+
+    @GeneratedValue(
+            strategy=GenerationType.AUTO,
+            generator = "base_joke_sequence"
+    )
     private int baseJokeid;
 
     @Column(name="baseJoke")

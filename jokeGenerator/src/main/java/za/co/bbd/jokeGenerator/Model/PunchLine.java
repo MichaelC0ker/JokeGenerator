@@ -7,7 +7,16 @@ import jakarta.persistence.*;
 public class PunchLine {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "punch_line_sequence",
+            sequenceName = "punch_line_sequence",
+            allocationSize = 1
+    )
+
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "punch_line_sequence"
+    )
     private int punchLineid;
 
     @Column(name="punchLine")
