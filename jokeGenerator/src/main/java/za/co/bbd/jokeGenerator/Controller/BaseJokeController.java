@@ -14,7 +14,7 @@ public class BaseJokeController{
     @GetMapping("/")
     public String GetBaseJoke(Model model){
         //service randomly choose and return base joke
-        model.addAttribute ("basejoke",baseJokeService.getBaseJoke());
+//        model.addAttribute ("basejoke",baseJokeService.getBaseJoke());
         return "home";
     }
 

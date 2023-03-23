@@ -1,4 +1,4 @@
-package za.co.bbd.jokeGenerator.Model;
+package za.co.bbd.jokeGenerator.Model.Enum;
 
 public enum EDifficulty {
     EASY,

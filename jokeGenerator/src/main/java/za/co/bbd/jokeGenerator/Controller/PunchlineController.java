@@ -16,12 +16,12 @@ import za.co.bbd.jokeGenerator.Service.PunchLine.PunchLineServiceImpl;
 public class PunchlineController{
     @Autowired
     private PunchLineServiceImpl punchLineService;
-    @GetMapping("/punchlines")
-    public String GetPunchLines(Model model){
-        //service randomly chooses 4 Punchline adds it to a list and returns the list of punchlines
-        model.addAttribute ("punchlines", punchLineService.getPunchLines());
-        return "punchlines";
-    }
+//    @GetMapping("/punchlines")
+//    public String GetPunchLines(Model model){
+//        //service randomly chooses 4 Punchline adds it to a list and returns the list of punchlines
+//        model.addAttribute ("punchlines", punchLineService.getPunchLines());
+//        return "punchlines";
+//    }
 
     @PostMapping("/rating")
     public String SubmitPunchLine(Model model){

@@ -9,4 +9,5 @@ import za.co.bbd.jokeGenerator.Model.Rating;
 public interface IPunchLineService {
     public abstract List<PunchLine> getPunchLines();
     public abstract Rating submitPunchLine(List<PunchLine> punchlines, BaseJoke baseJoke);
+    public abstract PunchLine getPunchLineById(int Id);
 }

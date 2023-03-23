@@ -9,10 +9,11 @@ import za.co.bbd.jokeGenerator.Model.PunchLine;
 import za.co.bbd.jokeGenerator.Model.Rating;
 @Service
 public class PunchLineServiceImpl implements IPunchLineService {
+    List<PunchLine> punchlines = new ArrayList<>();
 
     @Override
     public List<PunchLine> getPunchLines() {
-        List<PunchLine> punchlines = new ArrayList<>();
+        //will most likley delete
         punchlines.add(new PunchLine(1,"dum dum tish"));
         return punchlines;
     }
@@ -20,8 +21,15 @@ public class PunchLineServiceImpl implements IPunchLineService {
     @Override
     public Rating submitPunchLine(List<PunchLine> punchlines, BaseJoke baseJoke) {
         //will use algorithm here most likely to return rating
+        //will most likley delete
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'submitPunchLine'");
     }
-    
+
+    @Override
+    public PunchLine getPunchLineById(int Id) {
+        //get from db
+        return punchlines.get(0);
+    }
+
 }
