@@ -10,6 +10,8 @@ import za.co.bbd.jokeGenerator.Model.Rating;
 @Controller
 public class PunchlineController{
 
+    //insert auto waire
+
     @GetMapping("/punchLine")
     public List<PunchLine> GetPunchLines(){
         //service randomly chooses 4 Punchline adds it to a list and returns the list of punchlines

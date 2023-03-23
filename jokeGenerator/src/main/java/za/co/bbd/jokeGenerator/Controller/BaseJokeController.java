@@ -10,7 +10,7 @@ import za.co.bbd.jokeGenerator.Service.BaseJoke.BaseJokeService;
 @Controller
 public class BaseJokeController{
     @Autowired
-    private final BaseJokeService service;
+    private BaseJokeService service;
 
     @ModelAttribute ("BaseJokes")
     public BaseJoke GetBaseJoke(){

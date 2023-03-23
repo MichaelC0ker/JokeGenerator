@@ -3,13 +3,13 @@ package za.co.bbd.jokeGenerator.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import za.co.bbd.jokeGenerator.Model.Joke;
+// import za.co.bbd.jokeGenerator.Model.Joke;
 import za.co.bbd.jokeGenerator.Model.Player;
 import za.co.bbd.jokeGenerator.Model.PunchLine;
 
 public class JokeGeneratorExample {
     public static void main(String[] args) {
-        Joke jk = new Joke();
+        // Joke jk = new Joke();
         List<Player> players = new ArrayList<>();
         players.add(new Player("Player"));
         players.add(new Player("AI"));            //we're creating 2 players 
