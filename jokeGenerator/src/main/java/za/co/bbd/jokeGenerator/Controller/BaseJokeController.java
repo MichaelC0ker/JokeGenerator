@@ -1,21 +1,21 @@
 package za.co.bbd.jokeGenerator.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
-import za.co.bbd.jokeGenerator.Model.BaseJoke;
-import za.co.bbd.jokeGenerator.Service.BaseJoke.BaseJokeService;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import za.co.bbd.jokeGenerator.Service.BaseJoke.BaseJokeServiceImpl;
 
 
 @Controller
 public class BaseJokeController{
     @Autowired
-    private BaseJokeService service;
+    private BaseJokeServiceImpl baseJokeService;
 
-    @ModelAttribute ("BaseJokes")
-    public BaseJoke GetBaseJoke(){
+    @GetMapping("/")
+    public String GetBaseJoke(Model model){
         //service randomly choose and return base joke
-        return service.getBaseJoke();
+        model.addAttribute ("basejoke",baseJokeService.getBaseJoke());
+        return "home";
     }
 
 }

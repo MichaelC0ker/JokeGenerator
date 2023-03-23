@@ -1,16 +1,20 @@
 package za.co.bbd.jokeGenerator.Service.PunchLine;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import za.co.bbd.jokeGenerator.Model.BaseJoke;
 import za.co.bbd.jokeGenerator.Model.PunchLine;
 import za.co.bbd.jokeGenerator.Model.Rating;
-
-public class PunchLineServiceImpl implements PunchLineService{
+@Service
+public class PunchLineServiceImpl implements IPunchLineService {
 
     @Override
     public List<PunchLine> getPunchLines() {
-        throw new UnsupportedOperationException("Unimplemented method 'getPunchLines'");
+        List<PunchLine> punchlines = new ArrayList<>();
+        punchlines.add(new PunchLine(1,"dum dum tish"));
+        return punchlines;
     }
 
     @Override

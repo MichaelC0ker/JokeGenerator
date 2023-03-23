@@ -1,10 +1,11 @@
 package za.co.bbd.jokeGenerator.Service.BaseJoke;
 import java.util.Random;
-import com.fasterxml.jackson.databind.JsonSerializable.Base;
 
+import org.springframework.stereotype.Service;
 import za.co.bbd.jokeGenerator.Model.BaseJoke;
 
-public class BaseJokeServiceImpl extends BaseJokeService{
+@Service
+public class BaseJokeServiceImpl extends IBaseJokeService {
     //private final BaseJokeRepository repository;
 
     @Override
