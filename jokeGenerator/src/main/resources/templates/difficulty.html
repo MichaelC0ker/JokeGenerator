@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/global.css">
+  <title>Title</title>
+</head>
+
+<body>
+  <h1>Welcome to <b>The Joke Generator!</b></h1>
+  <h2>Please select a difficulty for the AI:</h2>
+
+  <div class="container">
+    <div class="vContainer">
+      <form th:each="difficulty: ${difficulties}" action="/difficulty/choose/">
+        <button class="punchline" type="submit">
+          <p class="cardText" th:text="${difficulty}">Difficulty</p>
+          <input type="text" name="difficulty" value="${difficulty}" hidden>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div>
+
+  </div>
+
+</body>
+
+</html>

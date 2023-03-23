@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Home Page Test</h1>
 
-<p th:text="${basejoke.getBaseJoke()}">Subject</p>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/global.css">
+  <title>Title</title>
+</head>
+
+<body>
+  <h1>The Joke Generator</h1>
+  <h2>Pick the punchline you think best matches this joke:</h2>
+
+  <div class="container">
+    <div class="joke">
+      <h3 th:text="${basejoke.getBaseJoke()}" class="cardText">Subject</h3>
+    </div>
+    <div class="vContainer">
+      <form th:each="punchline: ${punchlines}" action="/punchlines/pick/">
+        <button class="punchline" type="submit">
+          <p class="cardText" th:text="${punchline.getPunchLine()}">Punchline</p>
+          <!-- TODO: Change punchine to ID -->
+          <input type="text" name="id" value="${punchline.getPunchline()}" hidden>
+        </button>
+      </form>
+    </div>
+    <button onclick="window.location = './continue'" class="continue">Continue</button>
+  </div>
+
+  <div>
+
+  </div>
 
 </body>
+
 </html>

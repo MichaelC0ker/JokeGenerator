@@ -1,0 +1,51 @@
+html {
+  background: linear-gradient(90deg, rgba(255,0,0,0) 00%, rgba(182,182,235,0.6782913849133403) 100%);
+}
+
+.vContainer
+.container {
+  display: flex;
+}
+
+.vContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  justify-content: space-evenly;
+}
+
+.punchline {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  width: 100%;
+}
+
+.joke {
+  border-radius: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.cardText {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.continue {
+  float: right;
+  margin: 10px;
+  padding: 4px;
+}
+
+form {
+  flex: 1;
+  margin: 15px;
+  max-width: 270px;
+}
