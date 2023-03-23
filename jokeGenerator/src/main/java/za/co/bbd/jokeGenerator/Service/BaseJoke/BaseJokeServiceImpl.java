@@ -14,12 +14,12 @@ public class BaseJokeServiceImpl extends IBaseJokeService {
     private BaseJokeRepository bjRep;
 
     private int getNumJokes(){
-        return bjRep.findAll().size();       //Michael bruv - change this. Kind regards, Michael.
+        return (int)bjRep.count();  //convert long to int for nextInt
     }
     @Override
     public BaseJoke getBaseJoke() {
         Random random = new Random();
-        int randomId = random.nextInt(getNumJokes() - 1 + 1) + 1;
+        int randomId = random.nextInt((int)getNumJokes() - 1 + 1) + 1;
 
        // BaseJoke baseJoke = new BaseJoke(1,"basejoke");
         Optional<BaseJoke> bj = bjRep.findById(randomId);

@@ -9,6 +9,8 @@ import java.util.Optional;
 @Repository
 public interface BaseJokeRepository extends JpaRepository<BaseJoke, Integer> {
     List<BaseJoke> findAll();
+
+    long count();
     Optional<BaseJoke> findById(int baseJokeId);
 
 }
