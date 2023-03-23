@@ -14,6 +14,7 @@ import org.apache.http.util.EntityUtils;
 public class Joke {
     private final String url = "https://backend-omega-seven.vercel.app/api/getjoke"; // site to get jokes
     private List<PunchLine> punchlines = new ArrayList<>();
+    private List<BaseJoke> baseJokes = new ArrayList<>();
     private String baseJoke;
 
     public Joke() {
@@ -33,32 +34,12 @@ public class Joke {
                     continue;
                 }
 
-                if (i == 0) {
-                    baseJoke = dataArr[3];
+                    baseJokes.add(new BaseJoke(dataArr[5]));
                     punchlines.add(new PunchLine(5, dataArr[7]));
-
-                } else {
-                    punchlines.add(new PunchLine(4, dataArr[7])); // change 4 to random number between 0 and 5 !
-                    System.out.println("We ignore " + responseBody);
-
-                }
-
             }
-
         } catch (Exception ex) {
             System.out.println("Couldn't get the joke XD");
             ex.printStackTrace();
-            // do database things here
-        }
-
-        // testing constructor out
-        System.out.println(
-                "----------------------------------------------------------------------------------------------------\n"
-                        + "base joke " + baseJoke);
-        int count = 1;
-        for (PunchLine p : punchlines) {
-            System.out.println("Punchline " + count + " : " + p.getPunchLine());
-            count++;
         }
     }
 }
