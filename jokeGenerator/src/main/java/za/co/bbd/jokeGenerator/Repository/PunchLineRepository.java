@@ -10,6 +10,4 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface PunchLineRepository extends JpaRepository<PunchLine, Integer> {
-
-    Optional<PunchLine> findById(int punchLineid);
 }
