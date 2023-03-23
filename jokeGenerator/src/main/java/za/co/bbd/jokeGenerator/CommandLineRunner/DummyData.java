@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import za.co.bbd.jokeGenerator.Model.BaseJoke;
+import za.co.bbd.jokeGenerator.Model.Joke;
 import za.co.bbd.jokeGenerator.Model.PunchLine;
 import za.co.bbd.jokeGenerator.Repository.BaseJokeRepository;
 import za.co.bbd.jokeGenerator.Repository.PunchLineRepository;
@@ -14,11 +15,9 @@ public class DummyData {
     CommandLineRunner dummy(BaseJokeRepository baseJokeRepository, PunchLineRepository punchLineRepository){
 
         return args -> {
-            PunchLine punchLine = new PunchLine(1,"A punch line concludes a joke");
-            BaseJoke baseJoke = new BaseJoke("it is intended to make people laugh");
-
-            baseJokeRepository.save(baseJoke);
-            punchLineRepository.save(punchLine);
+            Joke jokes = new Joke();
+            baseJokeRepository.saveAll(jokes.baseJokes);
+            punchLineRepository.saveAll(jokes.punchlines);
         };
     }
 }
