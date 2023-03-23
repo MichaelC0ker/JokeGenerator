@@ -30,17 +30,17 @@ public class Rating {
     private int punchLineid;
 
     @Column(name="rating")
-    private TinyIntJdbcType rating;
+    private double rating;
 
     public Rating(){}
 
-    public Rating( int baseJokeid, int punchLineid, TinyIntJdbcType rating) {
+    public Rating( int baseJokeid, int punchLineid, double rating) {
         this.baseJokeid = baseJokeid;
         this.punchLineid = punchLineid;
         this.rating = rating;
     }
 
-    public Rating(int ratingId, int baseJokeid, int punchLineid, TinyIntJdbcType rating) {
+    public Rating(int ratingId, int baseJokeid, int punchLineid, double rating) {
         this.ratingId = ratingId;
         this.baseJokeid = baseJokeid;
         this.punchLineid = punchLineid;
@@ -71,11 +71,11 @@ public class Rating {
         this.punchLineid = punchLineid;
     }
 
-    public TinyIntJdbcType getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(TinyIntJdbcType rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
