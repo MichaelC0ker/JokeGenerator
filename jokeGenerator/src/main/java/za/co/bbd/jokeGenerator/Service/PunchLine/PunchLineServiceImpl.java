@@ -14,6 +14,10 @@ public class PunchLineServiceImpl implements IPunchLineService {
     public List<PunchLine> getPunchLines() {
         List<PunchLine> punchlines = new ArrayList<>();
         punchlines.add(new PunchLine(1,"dum dum tish"));
+        punchlines.add(new PunchLine(5,"ba dum tish"));
+        punchlines.add(new PunchLine(4,"Only TWO!"));
+        punchlines.add(new PunchLine(3,"Fifteen at least"));
+        punchlines.add(new PunchLine(2,"The right amount"));
         return punchlines;
     }
 
