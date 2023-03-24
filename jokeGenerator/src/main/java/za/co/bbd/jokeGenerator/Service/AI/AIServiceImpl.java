@@ -46,7 +46,10 @@ public class AIServiceImpl implements IAIService{
         for (int i=0; i<4; i++) {
             results.add(punchlines.get(random.nextInt(punchlines.size())));
         }
-        results.add(punchLineService.getPunchLineById( winningPunchline));
+
+        PunchLine punchLine = punchLineService.getPunchLineById(winningPunchline);
+        punchLine.setScore(5);
+        results.add(punchLine);
         return results;
     }
 
