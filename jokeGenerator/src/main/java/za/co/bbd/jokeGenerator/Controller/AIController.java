@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 import za.co.bbd.jokeGenerator.Model.BaseJoke;
 import za.co.bbd.jokeGenerator.Model.Enum.EDifficulty;
 import za.co.bbd.jokeGenerator.Model.Player;
@@ -18,6 +19,13 @@ import java.util.List;
 
 @Controller
 public class AIController{
+    private List<Player> players = new ArrayList<>();
+
+    public AIController() {
+        players.add( new Player("Player"));
+        players.add( new Player("AI"));
+    }
+
     @Autowired
     private JokeGeneratorAlgorithmService jokeGeneratorAlgorithmService;
     @Autowired
@@ -31,10 +39,6 @@ public class AIController{
     }
     @GetMapping("/")
     public String GetAllJokes(Model model){
-        //service randomly choose and return base joke
-        List<Player> players = new ArrayList<>();
-        players.add( new Player("Player"));
-        players.add( new Player("AI"));
 
         //get random base joke and punchline
         BaseJoke baseJoke = aiService.chooseBaseJoke();
@@ -44,18 +48,19 @@ public class AIController{
         //send to thymeleaf
         model.addAttribute ("basejoke",baseJoke);
         model.addAttribute("punchlines", punchLines);
+        model.addAttribute("players", players);
         return "home";
     }
-    @GetMapping("/punchlines/pick")
-    public String ChoosePunchLine(Model model){
+    @PostMapping("/punchlines/pick")
+    @ResponseBody
+    public RedirectView ChoosePunchLine(@RequestParam int id){
        //player chooses punchline / get id from param
-        PunchLine playerPunchLine = jokeGeneratorAlgorithmService.choosePunchLine(0);
+        PunchLine playerPunchLine = jokeGeneratorAlgorithmService.choosePunchLine(id);
         PunchLine aiPunchLine = aiService.SelectSinglePunchLine(jokeGeneratorAlgorithmService.AiOptions(playerPunchLine));
         //ai chooses
         System.out.println(playerPunchLine.getScore());
         jokeGeneratorAlgorithmService.choosePunchLine(aiPunchLine.getPunchLineid());
-        model.addAttribute("aiPunchLine",aiPunchLine);
-        return "punchlines";
+        return new RedirectView("/");
     }
 
 }
