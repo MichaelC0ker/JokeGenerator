@@ -12,15 +12,21 @@
   <h2>Pick the punchline you think best matches this joke:</h2>
 
   <div class="container">
+    <div class="vContainer">
+      <div th:each="player: ${players}">
+        <h4 th:text="${player.toString()}">
+        </h4>
+      </div>
+    </div>
     <div class="joke">
       <h3 th:text="${basejoke.getBaseJoke()}" class="cardText">Subject</h3>
     </div>
     <div class="vContainer">
-      <form th:each="punchline: ${punchlines}">
-        <button class="punchline" onclick="window.location = './punchlines/pick/'" >
+      <form th:each="punchline: ${punchlines}" action="/punchlines/pick">
+        <button class="punchline" type="submit" >
           <p class="cardText" th:text="${punchline.getPunchLine()}">Punchline</p>
           <!-- TODO: Change punchine to ID -->
-          <input type="text" hidden>
+          <input type="number" name="id" th:value="${punchline.getPunchLineid()}" hidden>
         </button>
       </form>
     </div>
