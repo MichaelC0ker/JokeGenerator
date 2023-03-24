@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IJokeGeneratorAlgorithmService {
     public void initlializeJokeGeneratorAlgorithm(List<Player> players, List<PunchLine> punchlines);
-    public Integer choosePunchLine(int id);
+    public PunchLine choosePunchLine(int id);
     public void endTurn();
 
 }

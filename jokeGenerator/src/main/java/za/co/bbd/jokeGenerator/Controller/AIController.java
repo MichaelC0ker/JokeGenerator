@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import za.co.bbd.jokeGenerator.Model.BaseJoke;
 import za.co.bbd.jokeGenerator.Model.Enum.EDifficulty;
 import za.co.bbd.jokeGenerator.Model.Player;
 import za.co.bbd.jokeGenerator.Model.PunchLine;
@@ -22,18 +23,40 @@ public class AIController{
     private JokeGeneratorAlgorithmService jokeGeneratorAlgorithmService;
     @Autowired
     private AIServiceImpl aiService;
+
     @PostMapping("/HomeScreen")
     public String ChooseDifficulty(Model model){
-        //initalize ai and joke generator algorithm
+        //initalize ai
+        aiService.initializeAI(EDifficulty.EASY);
+        return "home";
+    }
+    @GetMapping("/")
+    public String GetAllJokes(Model model){
+        //service randomly choose and return base joke
         List<Player> players = new ArrayList<>();
         players.add( new Player("Player"));
         players.add( new Player("AI"));
+        //maybe set this in constructor jga
 
-        aiService.initializeAI(EDifficulty.EASY);
-
-        List<PunchLine> punchLines = aiService.choosePunchLine();
+        //get random base joke and punchline
+        BaseJoke baseJoke = aiService.chooseBaseJoke();
+        List<PunchLine> punchLines = aiService.choosePunchLines();
         jokeGeneratorAlgorithmService.initlializeJokeGeneratorAlgorithm(players, punchLines);
 
+        //send to thymeleaf
+        model.addAttribute ("basejoke",baseJoke);
+        model.addAttribute("punchlines", punchLines);
         return "home";
     }
+    @PostMapping("/ChoosePunchLine")
+    public String ChoosePunchLine(Model model){
+       //player chooses punchline / get id from param
+        PunchLine playerPunchLine = jokeGeneratorAlgorithmService.choosePunchLine(0);
+        PunchLine aiPunchLine = aiService.SelectSinglePunchLine(jokeGeneratorAlgorithmService.AiOptions(playerPunchLine));
+        //ai chooses punchline
+        jokeGeneratorAlgorithmService.choosePunchLine(aiPunchLine.getPunchLineid());
+        model.addAttribute("aiPunchLine",aiPunchLine);
+        return "rating";
+    }
+
 }

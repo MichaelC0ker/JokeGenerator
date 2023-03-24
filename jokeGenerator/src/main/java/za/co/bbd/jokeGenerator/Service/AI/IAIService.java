@@ -9,5 +9,7 @@ import java.util.List;
 public interface IAIService {
     public void initializeAI(EDifficulty eDifficulty);
     public BaseJoke chooseBaseJoke();
-    public List<PunchLine> choosePunchLine();
+    public List<PunchLine> choosePunchLines();
+    public PunchLine SelectSinglePunchLine(List<PunchLine> punchLines);
+
 }

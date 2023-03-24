@@ -1,29 +1,36 @@
 package za.co.bbd.jokeGenerator.Model;
 
-//import jakarta.persistence.Column;
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.GeneratedValue;
-//import jakarta.persistence.GenerationType;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-//@Entity
-//@Table(name = "PunchLine")
+@Entity
+@Table(name = "PunchLine")
 public class PunchLine {
-//
-//    @Id
-//    @GeneratedValue(strategy=GenerationType.AUTO)
+
+    @Id
+    @SequenceGenerator(
+            name = "punch_line_sequence",
+            sequenceName = "punch_line_sequence",
+            allocationSize = 1
+    )
+
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "punch_line_sequence"
+    )
     private int punchLineid;
 
-//    @Column(name="punchLine")
+    @Column(name="punchLine")
     private String punchLine;
 
-//    @Column(name="score")
+    @Column(name="score")
     private int score;
 
     public PunchLine(int score,String punchline) {
         this.score = score;
         this.punchLine = punchline;
+    }
+
+    public PunchLine() {
     }
 
     public int getScore() {
