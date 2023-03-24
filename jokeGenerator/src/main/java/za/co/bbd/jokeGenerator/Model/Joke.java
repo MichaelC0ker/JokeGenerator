@@ -24,12 +24,9 @@ public class Joke {
             HttpGet httpGet = new HttpGet(url);
             for (int i = 0; i < 50; i++) {
 
-                String responseBody = httpClient.execute(httpGet,
-                        response -> EntityUtils.toString(response.getEntity())); // maybe just split here ??
-
-                //maybe replace this with an object mapper ?? 
+                String responseBody = httpClient.execute(httpGet, response -> EntityUtils.toString(response.getEntity()));
                 String[] dataArr = responseBody.split("\"");
-                if(dataArr.length != 9){  //if our response isn't formatted appropritely, make another request 
+                if(dataArr.length != 9){
                     i--;
                     continue;
                 }

@@ -35,7 +35,6 @@ public class AIController{
         List<Player> players = new ArrayList<>();
         players.add( new Player("Player"));
         players.add( new Player("AI"));
-        //maybe set this in constructor jga
 
         //get random base joke and punchline
         BaseJoke baseJoke = aiService.chooseBaseJoke();
@@ -52,7 +51,8 @@ public class AIController{
        //player chooses punchline / get id from param
         PunchLine playerPunchLine = jokeGeneratorAlgorithmService.choosePunchLine(0);
         PunchLine aiPunchLine = aiService.SelectSinglePunchLine(jokeGeneratorAlgorithmService.AiOptions(playerPunchLine));
-        //ai chooses punchline
+        //ai chooses
+        System.out.println(playerPunchLine.getScore());
         jokeGeneratorAlgorithmService.choosePunchLine(aiPunchLine.getPunchLineid());
         model.addAttribute("aiPunchLine",aiPunchLine);
         return "punchlines";
