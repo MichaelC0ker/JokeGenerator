@@ -39,12 +39,17 @@ public class AIServiceImpl implements IAIService{
     }
 
     @Override
-    public List<PunchLine> choosePunchLines() {
+    public List<PunchLine> choosePunchLines(int winningPunchline) {
+        //randomly choose a number of punchlines
         List<PunchLine> punchlines = punchLineService.getAllPunchLines();
         List<PunchLine> results = new ArrayList<>();
-        for (int i=0; i<5; i++) {
+        for (int i=0; i<4; i++) {
             results.add(punchlines.get(random.nextInt(punchlines.size())));
         }
+
+        PunchLine punchLine = punchLineService.getPunchLineById(winningPunchline);
+        punchLine.setScore(5);
+        results.add(punchLine);
         return results;
     }
 

@@ -42,8 +42,7 @@ public class AIController{
 
         //get random base joke and punchline
         BaseJoke baseJoke = aiService.chooseBaseJoke();
-        List<PunchLine> punchLines = aiService.choosePunchLines();
-
+        List<PunchLine> punchLines = aiService.choosePunchLines(baseJoke.getBaseJokeid());
         jokeGeneratorAlgorithmService.initlializeJokeGeneratorAlgorithm(players, punchLines);
         aiService.initializeAI(EDifficulty.MEDIUM);
 

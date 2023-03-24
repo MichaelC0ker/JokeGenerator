@@ -25,8 +25,9 @@ public class PunchLine {
     @Column(name="score")
     private int score;
 
-    public PunchLine() {
-    }
+   public PunchLine() {
+
+   }
 
     public PunchLine(int score, String punchline) {
         this.score = score;
