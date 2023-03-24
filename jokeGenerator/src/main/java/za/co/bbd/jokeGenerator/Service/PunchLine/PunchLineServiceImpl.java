@@ -13,39 +13,18 @@ import za.co.bbd.jokeGenerator.Repository.PunchLineRepository;
 
 @Service
 public class PunchLineServiceImpl implements IPunchLineService {
-
-    final private PunchLineRepository repository;
-    Random rand = new Random();
-
+    List<PunchLine> punchlines = new ArrayList<>();
     @Autowired
-    public PunchLineServiceImpl(PunchLineRepository repository) {
-        this.repository = repository;
-    }
-
+    private PunchLineRepository punchLineRepository;
+    Random rand = new Random();
     @Override
-    public List<PunchLine> getPunchLines() {
-//        List<PunchLine> punchlines = new ArrayList<>();
-//        punchlines.add(new PunchLine(1,"dum dum tish"));
-//        punchlines.add(new PunchLine(5,"ba dum tish"));
-//        punchlines.add(new PunchLine(4,"Only TWO!"));
-//        punchlines.add(new PunchLine(3,"Fifteen at least"));
-//        punchlines.add(new PunchLine(2,"The right amount"));
-//        return punchlines;
-
-        List<PunchLine> punchlines = repository.findAll();
-        List<PunchLine> results = new ArrayList<>();
-
-        for (int i=0; i<5; i++) {
-            results.add(punchlines.get(rand.nextInt(punchlines.size())));
-        }
-        return results;
+    public List<PunchLine> getAllPunchLines() {
+        return punchLineRepository.findAll();
     }
-
     @Override
-    public Rating submitPunchLine(List<PunchLine> punchlines, BaseJoke baseJoke) {
-        //will use algorithm here most likely to return rating
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'submitPunchLine'");
+    public PunchLine getPunchLineById(int id) {
+        //get from db
+        return punchLineRepository.findById(id).orElse(new PunchLine());
     }
-    
+
 }

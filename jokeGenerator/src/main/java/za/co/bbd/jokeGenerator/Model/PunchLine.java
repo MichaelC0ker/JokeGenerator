@@ -33,6 +33,9 @@ public class PunchLine {
         this.punchLine = punchline;
     }
 
+    public PunchLine() {
+    }
+
     public int getScore() {
         return score;
     }
