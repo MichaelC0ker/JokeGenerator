@@ -23,6 +23,14 @@ public class JokeGeneratorAlgorithmService implements IJokeGeneratorAlgorithmSer
         jga.setPunchLines(punchlines);
     }
 
+    public void setPunchLines(List<PunchLine> punchlines) {
+        jga.setPunchLines(punchlines);
+    }
+
+    public void setPlayers(List<Player> players) {
+        jga.setPlayers(players);
+    }
+
     @Override
     public PunchLine choosePunchLine(int id) {
         //gets score of chosen punchline and adds it to players score / then ends turn

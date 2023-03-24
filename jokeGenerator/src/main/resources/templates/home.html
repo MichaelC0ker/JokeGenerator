@@ -22,7 +22,7 @@
       <h3 th:text="${basejoke.getBaseJoke()}" class="cardText">Subject</h3>
     </div>
     <div class="vContainer">
-      <form th:each="punchline: ${punchlines}" action="/punchlines/pick">
+      <form th:each="punchline: ${punchlines}" action="/punchlines/pick" method="post">
         <button class="punchline" type="submit" >
           <p class="cardText" th:text="${punchline.getPunchLine()}">Punchline</p>
           <!-- TODO: Change punchine to ID -->

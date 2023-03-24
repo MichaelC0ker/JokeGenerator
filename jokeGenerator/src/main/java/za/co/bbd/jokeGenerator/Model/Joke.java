@@ -35,7 +35,7 @@ public class Joke {
                     continue;
                 }
                 baseJokes.add(new BaseJoke(dataArr[3]));
-                punchlines.add(new PunchLine(rnd.nextInt(5), dataArr[7]));
+                punchlines.add(new PunchLine(rnd.nextInt(1, 6), dataArr[7]));
             }
         } catch (Exception ex) {
             System.out.println("Couldn't get the joke XD");
