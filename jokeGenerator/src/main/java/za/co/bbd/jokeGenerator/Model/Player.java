@@ -4,7 +4,6 @@ package za.co.bbd.jokeGenerator.Model;
 public class Player {
     private final String name;
     private int accumulatedScore = 0;
-
     public Player(String name) {
         this.name = name;
     }

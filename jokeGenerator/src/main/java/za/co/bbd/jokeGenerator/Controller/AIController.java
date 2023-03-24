@@ -39,8 +39,6 @@ public class AIController{
     }
     @GetMapping("/")
     public String GetAllJokes(Model model){
-        //service randomly choose and return base joke
-        //maybe set this in constructor jga
 
         //get random base joke and punchline
         BaseJoke baseJoke = aiService.chooseBaseJoke();
@@ -59,7 +57,8 @@ public class AIController{
        //player chooses punchline / get id from param
         PunchLine playerPunchLine = jokeGeneratorAlgorithmService.choosePunchLine(id);
         PunchLine aiPunchLine = aiService.SelectSinglePunchLine(jokeGeneratorAlgorithmService.AiOptions(playerPunchLine));
-        //ai chooses punchline
+        //ai chooses
+        System.out.println(playerPunchLine.getScore());
         jokeGeneratorAlgorithmService.choosePunchLine(aiPunchLine.getPunchLineid());
         return new RedirectView("/");
     }

@@ -11,7 +11,6 @@ public class AIAlgorithm {
     public AIAlgorithm(EDifficulty difficulty) {
         this.difficulty = difficulty;
     }
-
     public AIAlgorithm() {
     }
     public EDifficulty getDifficulty() {
