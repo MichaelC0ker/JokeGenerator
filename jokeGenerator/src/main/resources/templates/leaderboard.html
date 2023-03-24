@@ -8,15 +8,15 @@
 </head>
 
 <body>
-  <h1>Welcome to <b>The Joke Generator!</b></h1>
-  <h2>Please select a difficulty for the AI:</h2>
+  <h1>The Winner Is...</h1>
+  <h2 th:text="${players.get(0)}">Winner</h2>
 
   <div class="container">
     <div class="vContainer">
-      <form th:each="difficulty: ${difficulties}" action="/difficulty/choose/">
+      <form th:each="player: ${players}" action="/difficulty/choose/">
         <button class="punchline" type="submit">
           <p class="cardText" th:text="${difficulty}">Difficulty</p>
-          <input type="text" name="difficulty" value="${difficulty}" hidden>
+          <input type="text" name="difficulty" th:value="${difficulty}" hidden />
         </button>
       </form>
     </div>

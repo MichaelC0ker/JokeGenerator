@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <h1>The Joke Generator</h1>
+  <h1><b>The Joke Generator</b></h1>
   <h2>Pick the punchline you think best matches this joke:</h2>
 
   <div class="container">
@@ -20,7 +20,7 @@
         <button class="punchline" type="submit">
           <p class="cardText" th:text="${punchline.getPunchLine()}">Punchline</p>
           <!-- TODO: Change punchine to ID -->
-          <input type="text" name="id" value="${punchline.getPunchline()}" hidden>
+          <input type="text" th:value="${punchline.getPunchLineid()}" name="id" hidden/>
         </button>
       </form>
     </div>

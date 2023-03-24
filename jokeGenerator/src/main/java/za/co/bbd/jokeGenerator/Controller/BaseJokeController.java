@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import za.co.bbd.jokeGenerator.Model.EDifficulty;
 import za.co.bbd.jokeGenerator.Service.BaseJoke.BaseJokeServiceImpl;
 import za.co.bbd.jokeGenerator.Service.PunchLine.PunchLineServiceImpl;
 
@@ -15,7 +16,7 @@ public class BaseJokeController{
     @Autowired
     private PunchLineServiceImpl punchLineService;
 
-    @GetMapping("/")
+    @GetMapping("/game")
     public String GetBaseJoke(Model model){
         //service randomly choose and return base joke
         model.addAttribute ("basejoke",baseJokeService.getBaseJoke());
