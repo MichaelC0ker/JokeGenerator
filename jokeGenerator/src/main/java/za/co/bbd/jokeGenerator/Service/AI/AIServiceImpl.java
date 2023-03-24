@@ -31,7 +31,6 @@ public class AIServiceImpl implements IAIService{
 
     @Override
     public BaseJoke chooseBaseJoke() {
-        //randomly choose a base joke from db
         Random random = new Random();
         int numOfJokes = baseJokeService.getNumJokes();
         int randomId = random.nextInt(1, numOfJokes);
@@ -41,7 +40,6 @@ public class AIServiceImpl implements IAIService{
 
     @Override
     public List<PunchLine> choosePunchLines() {
-        //randomly choose a number of punchlines
         List<PunchLine> punchlines = punchLineService.getAllPunchLines();
         List<PunchLine> results = new ArrayList<>();
         for (int i=0; i<5; i++) {
