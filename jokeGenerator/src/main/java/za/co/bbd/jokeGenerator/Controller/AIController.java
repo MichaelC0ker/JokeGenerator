@@ -47,10 +47,9 @@ public class AIController{
         model.addAttribute("punchlines", punchLines);
         return "home";
     }
-    @GetMapping("/punchlines/pick/{id}")
-    public String ChoosePunchLine(Model model,  @RequestParam(name = "id") int id){
+    @GetMapping("/punchlines/pick")
+    public String ChoosePunchLine(Model model){
        //player chooses punchline / get id from param
-        System.out.println(id);
         PunchLine playerPunchLine = jokeGeneratorAlgorithmService.choosePunchLine(0);
         PunchLine aiPunchLine = aiService.SelectSinglePunchLine(jokeGeneratorAlgorithmService.AiOptions(playerPunchLine));
         //ai chooses punchline
