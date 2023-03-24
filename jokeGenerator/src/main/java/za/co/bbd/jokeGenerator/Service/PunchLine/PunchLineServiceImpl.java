@@ -23,7 +23,6 @@ public class PunchLineServiceImpl implements IPunchLineService {
     }
     @Override
     public PunchLine getPunchLineById(int id) {
-        //get from db
         return punchLineRepository.findById(id).orElse(new PunchLine());
     }
 

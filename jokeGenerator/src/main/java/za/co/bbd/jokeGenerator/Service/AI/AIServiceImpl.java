@@ -31,10 +31,9 @@ public class AIServiceImpl implements IAIService{
 
     @Override
     public BaseJoke chooseBaseJoke() {
-        //randomly choose a base joke from db
         Random random = new Random();
         int numOfJokes = baseJokeService.getNumJokes();
-        int randomId = random.nextInt((int) numOfJokes - 1 + 1) + 1;
+        int randomId = random.nextInt(1, numOfJokes);
 
         return baseJokeService.getBaseJokeById(randomId);
     }
@@ -71,21 +70,9 @@ public class AIServiceImpl implements IAIService{
                 break;
         }
 
-        int totalWeights = sortedPunchlines.stream()
-                .map(PunchLine::getScore)
-                .reduce(0, Integer::sum);
-
-        int randomWeight = (int)(Math.random() * (totalWeights + 1));
-
-        for (PunchLine p : sortedPunchlines) {
-            totalWeights -= p.getScore();
-            if (randomWeight >= totalWeights) {
-                return p;
-            }
-        }
-
-        // Should never happen
-        return null;    }
+        return sortedPunchlines.get(random.nextInt(0, sortedPunchlines.size()));
+        
+      }
 
     private final Comparator<PunchLine> compareByScore = Comparator
             .comparing(PunchLine::getScore).reversed();

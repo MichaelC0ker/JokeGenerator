@@ -32,9 +32,6 @@ public class PunchLine {
         this.punchLine = punchline;
     }
 
-    public PunchLine() {
-    }
-
     public int getScore() {
         return score;
     }
@@ -55,7 +52,7 @@ public class PunchLine {
         return punchLineid;
     }
 
-    public void setPunchLineid(int punchLineid) {
+    public void setPunchLineId(int punchLineid) {
         this.punchLineid = punchLineid;
     }
 

@@ -25,17 +25,14 @@ public class Joke {
             HttpGet httpGet = new HttpGet(url);
             for (int i = 0; i < 50; i++) {
 
-                String responseBody = httpClient.execute(httpGet,
-                        response -> EntityUtils.toString(response.getEntity())); // maybe just split here ??
-
-                // maybe replace this with an object mapper ??
+                String responseBody = httpClient.execute(httpGet, response -> EntityUtils.toString(response.getEntity()));
                 String[] dataArr = responseBody.split("\"");
-                if (dataArr.length != 9) { // if our response isn't formatted appropritely, make another request
+                if(dataArr.length != 9){
                     i--;
                     continue;
                 }
                 baseJokes.add(new BaseJoke(dataArr[3]));
-                punchlines.add(new PunchLine(rnd.nextInt(5), dataArr[7]));
+                punchlines.add(new PunchLine(rnd.nextInt(1, 6), dataArr[7]));
             }
         } catch (Exception ex) {
             System.out.println("Couldn't get the joke XD");
