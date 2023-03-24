@@ -16,15 +16,15 @@
       <h3 th:text="${basejoke.getBaseJoke()}" class="cardText">Subject</h3>
     </div>
     <div class="vContainer">
-      <form th:each="punchline: ${punchlines}" action="/punchlines/pick/">
-        <button class="punchline" type="submit">
+      <form th:each="punchline: ${punchlines}">
+        <button class="punchline" onclick="window.location = './punchlines/pick/'" >
           <p class="cardText" th:text="${punchline.getPunchLine()}">Punchline</p>
           <!-- TODO: Change punchine to ID -->
-          <input type="text" name="id" value="${punchline.getPunchline()}" hidden>
+          <input type="text" hidden>
         </button>
       </form>
     </div>
-    <button onclick="window.location = './continue'" class="continue">Continue</button>
+<!--    <button onclick="window.location = './continue'" class="continue">Continue</button>-->
   </div>
 
   <div>

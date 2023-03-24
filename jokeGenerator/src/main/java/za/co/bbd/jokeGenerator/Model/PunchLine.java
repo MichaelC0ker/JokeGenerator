@@ -25,9 +25,15 @@ public class PunchLine {
     @Column(name="score")
     private int score;
 
-    public PunchLine(int score,String punchline) {
+    public PunchLine() {
+    }
+
+    public PunchLine(int score, String punchline) {
         this.score = score;
         this.punchLine = punchline;
+    }
+
+    public PunchLine() {
     }
 
     public int getScore() {
