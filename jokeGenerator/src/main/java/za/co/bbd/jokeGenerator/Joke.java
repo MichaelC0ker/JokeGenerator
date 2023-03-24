@@ -10,14 +10,18 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Joke {
     private final String url = "https://backend-omega-seven.vercel.app/api/getjoke"; // site to get jokes
     private List<Punchline> punchlines = new ArrayList<>();
     private String baseJoke;
-
+   private String removeSquareBrackets(String str){
+       str.replace('[',' ');
+       str.replace(']',' ');
+       str.trim();
+       return str;
+   };
     public Joke() {
 
         try {
@@ -27,20 +31,15 @@ public class Joke {
 
                 String responseBody = httpClient.execute(httpGet,
                         response -> EntityUtils.toString(response.getEntity())); // maybe just split here ??
-
-                //maybe replace this with an object mapper ?? 
-                String[] dataArr = responseBody.split("\"");
-                if(dataArr.length != 9){  //if our response isn't formatted appropritely, make another request 
-                    i--;
-                    continue;
-                }
-
+                responseBody = responseBody.substring(1,responseBody.length()-1);
+                ObjectMapper objectMapper = new ObjectMapper();
+                Response resp = objectMapper.readValue(responseBody, Response.class);
                 if (i == 0) {
-                    baseJoke = dataArr[3];
-                    punchlines.add(new Punchline(5, dataArr[7]));
+                    baseJoke = resp.getQuestion();
+                    punchlines.add(new Punchline(5, resp.getQuestion()));
 
                 } else {
-                    punchlines.add(new Punchline( (int) (Math.random() * 4), dataArr[7])); // change 4 to random number between 0 and 5 !
+                    punchlines.add(new Punchline( (int) (Math.random() * 4), resp.getPunchline())); // change 4 to random number between 0 and 5 !
                 }
 
             }
