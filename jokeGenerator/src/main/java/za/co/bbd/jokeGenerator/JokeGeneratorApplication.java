@@ -8,6 +8,7 @@ public class JokeGeneratorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JokeGeneratorApplication.class, args);
+
 	}
 
 }
