@@ -21,15 +21,15 @@ import java.util.List;
 public class AIController{
     private List<Player> players = new ArrayList<>();
 
-    public AIController() {
-        players.add( new Player("Player"));
-        players.add( new Player("AI"));
-    }
-
     @Autowired
     private JokeGeneratorAlgorithmService jokeGeneratorAlgorithmService;
     @Autowired
     private AIServiceImpl aiService;
+
+    public AIController() {
+        players.add( new Player("Player"));
+        players.add( new Player("AI"));
+    }
 
     @PostMapping("/HomeScreen")
     public String ChooseDifficulty(Model model){
@@ -43,7 +43,9 @@ public class AIController{
         //get random base joke and punchline
         BaseJoke baseJoke = aiService.chooseBaseJoke();
         List<PunchLine> punchLines = aiService.choosePunchLines();
+
         jokeGeneratorAlgorithmService.initlializeJokeGeneratorAlgorithm(players, punchLines);
+        aiService.initializeAI(EDifficulty.MEDIUM);
 
         //send to thymeleaf
         model.addAttribute ("basejoke",baseJoke);
