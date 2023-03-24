@@ -3,6 +3,7 @@ package za.co.bbd.jokeGenerator.Model;
 /* Imports for data structures */
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.http.HttpException;
 /* Imports for HTTP request */
@@ -18,7 +19,7 @@ public class Joke {
     private String baseJoke;
 
     public Joke() {
-
+       Random rnd = new Random();
         try {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             HttpGet httpGet = new HttpGet(url);
@@ -27,14 +28,14 @@ public class Joke {
                 String responseBody = httpClient.execute(httpGet,
                         response -> EntityUtils.toString(response.getEntity())); // maybe just split here ??
 
-                //maybe replace this with an object mapper ?? 
+                // maybe replace this with an object mapper ??
                 String[] dataArr = responseBody.split("\"");
-                if(dataArr.length != 9){  //if our response isn't formatted appropritely, make another request 
+                if (dataArr.length != 9) { // if our response isn't formatted appropritely, make another request
                     i--;
                     continue;
                 }
-                    baseJokes.add(new BaseJoke(dataArr[3]));
-                    punchlines.add(new PunchLine(5, dataArr[7]));
+                baseJokes.add(new BaseJoke(dataArr[3]));
+                punchlines.add(new PunchLine(rnd.nextInt(5), dataArr[7]));
             }
         } catch (Exception ex) {
             System.out.println("Couldn't get the joke XD");
