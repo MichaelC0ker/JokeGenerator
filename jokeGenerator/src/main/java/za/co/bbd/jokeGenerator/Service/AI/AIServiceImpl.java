@@ -9,6 +9,7 @@ import za.co.bbd.jokeGenerator.Model.PunchLine;
 import za.co.bbd.jokeGenerator.Service.BaseJoke.BaseJokeServiceImpl;
 import za.co.bbd.jokeGenerator.Service.PunchLine.PunchLineServiceImpl;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
@@ -42,10 +43,11 @@ public class AIServiceImpl implements IAIService{
     public List<PunchLine> choosePunchLines() {
         //randomly choose a number of punchlines
         List<PunchLine> punchlines = punchLineService.getAllPunchLines();
+        List<PunchLine> results = new ArrayList<>();
         for (int i=0; i<5; i++) {
-            punchlines.add(punchlines.get(random.nextInt(punchlines.size())));
+            results.add(punchlines.get(random.nextInt(punchlines.size())));
         }
-        return punchlines;
+        return results;
     }
 
     @Override

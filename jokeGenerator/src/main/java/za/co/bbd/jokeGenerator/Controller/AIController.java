@@ -2,8 +2,7 @@ package za.co.bbd.jokeGenerator.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import za.co.bbd.jokeGenerator.Model.BaseJoke;
 import za.co.bbd.jokeGenerator.Model.Enum.EDifficulty;
 import za.co.bbd.jokeGenerator.Model.Player;
@@ -48,15 +47,16 @@ public class AIController{
         model.addAttribute("punchlines", punchLines);
         return "home";
     }
-    @PostMapping("/ChoosePunchLine")
-    public String ChoosePunchLine(Model model){
+    @GetMapping("/punchlines/pick/{id}")
+    public String ChoosePunchLine(Model model,  @RequestParam(name = "id") int id){
        //player chooses punchline / get id from param
+        System.out.println(id);
         PunchLine playerPunchLine = jokeGeneratorAlgorithmService.choosePunchLine(0);
         PunchLine aiPunchLine = aiService.SelectSinglePunchLine(jokeGeneratorAlgorithmService.AiOptions(playerPunchLine));
         //ai chooses punchline
         jokeGeneratorAlgorithmService.choosePunchLine(aiPunchLine.getPunchLineid());
         model.addAttribute("aiPunchLine",aiPunchLine);
-        return "rating";
+        return "punchlines";
     }
 
 }
