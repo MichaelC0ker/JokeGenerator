@@ -19,7 +19,7 @@ import java.util.List;
 public class BaseJokeController{
     private JokeGeneratorAlgorithmService jokeGeneratorAlgorithmService;
     private AIServiceImpl aiService;
-//    @GetMapping("/")
+//    @GetMapping("/game")
 //    public String GetAllJokes(Model model){
 //        //service randomly choose and return base joke
 //        List<Player> players = new ArrayList<>();

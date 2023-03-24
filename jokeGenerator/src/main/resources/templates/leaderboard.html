@@ -13,12 +13,12 @@
 
   <div class="container">
     <div class="vContainer">
-      <form th:each="player: ${players}" action="/difficulty/choose/">
-        <button class="punchline" type="submit">
-          <p class="cardText" th:text="${difficulty}">Difficulty</p>
-          <input type="text" name="difficulty" th:value="${difficulty}" hidden />
-        </button>
-      </form>
+      <div th:each="player: ${players}">
+        <div class="joke">
+          <p class="cardText" th:text="${player.toString()}">PLayer</p>
+        </div>
+      </div>
+      <button onclick="window.location = '/'" class="continue">Play Again</button>
     </div>
   </div>
 

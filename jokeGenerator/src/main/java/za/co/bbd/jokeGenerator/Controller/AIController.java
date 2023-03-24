@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import za.co.bbd.jokeGenerator.Model.BaseJoke;
 import za.co.bbd.jokeGenerator.Model.Enum.EDifficulty;
 import za.co.bbd.jokeGenerator.Model.Player;
@@ -33,6 +35,7 @@ public class AIController{
     @GetMapping("/")
     public String GetAllJokes(Model model){
         //service randomly choose and return base joke
+        aiService.initializeAI(EDifficulty.MEDIUM);
         List<Player> players = new ArrayList<>();
         players.add( new Player("Player"));
         players.add( new Player("AI"));
@@ -48,15 +51,17 @@ public class AIController{
         model.addAttribute("punchlines", punchLines);
         return "home";
     }
-    @PostMapping("/ChoosePunchLine")
-    public String ChoosePunchLine(Model model){
+    @PostMapping("/punchlines/pick")
+    @ResponseBody
+    public String ChoosePunchLine(@RequestParam(name = "id") int id, Model model){
        //player chooses punchline / get id from param
-        PunchLine playerPunchLine = jokeGeneratorAlgorithmService.choosePunchLine(0);
+        System.out.println("HERE!!!");
+        PunchLine playerPunchLine = jokeGeneratorAlgorithmService.choosePunchLine(id);
         PunchLine aiPunchLine = aiService.SelectSinglePunchLine(jokeGeneratorAlgorithmService.AiOptions(playerPunchLine));
         //ai chooses punchline
-        jokeGeneratorAlgorithmService.choosePunchLine(aiPunchLine.getPunchLineid());
+        System.out.println(jokeGeneratorAlgorithmService.choosePunchLine(aiPunchLine.getPunchLineid()));
         model.addAttribute("aiPunchLine",aiPunchLine);
-        return "rating";
+        return "redirect:/";
     }
 
 }
