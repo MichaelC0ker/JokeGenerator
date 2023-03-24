@@ -56,7 +56,7 @@ public class PunchLine {
         return punchLineid;
     }
 
-    public void setPunchLineid(int punchLineid) {
+    public void setPunchLineId(int punchLineid) {
         this.punchLineid = punchLineid;
     }
 
